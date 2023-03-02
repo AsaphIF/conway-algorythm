@@ -1,6 +1,7 @@
 public class myconway {
     
-    public static int grid[][] =    {   { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
+    public static int m = 10, n = 10 ;
+    public static int grade[][] =    {   { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
                                         { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 },
                                         { 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 },
                                         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -28,7 +29,7 @@ public class myconway {
 
     }
 
-    public static void prox(int grid[][], int m , int n){
+    public static int[][] prox(int grid[][], int m , int n){
         int[][] futuro = new int[m][n];
 
         for(int l = 0; l < m; l++)
@@ -41,15 +42,15 @@ public class myconway {
                         if((l+i>=0&&l+i<m)&&(p+j>=0&&p+j<n))
                          alive += grid[l+i][p+j];
                 
-                alive -=grid[l][p];
+                alive -= grid[l][p];
 
-                if((grid[l][p]==1)&&(alive < 2))
+                if( ( grid[l][p] == 1 ) && ( alive < 2 ) )
                     futuro[l][p] = 0; 
 
-                if((grid[l][p]==1)&&(alive > 3))
+                if( ( grid[l][p] == 1 ) && ( alive > 3 ) )
                     futuro[l][p] = 0; 
 
-                if((grid[l][p]==0)&&(alive == 3))
+                if( ( grid[l][p] == 0 ) && ( alive == 3 ) )
                     futuro[l][p] = 1; 
                 else 
                     futuro[l][p] = grid[l][p];
@@ -57,33 +58,28 @@ public class myconway {
             }
         }
 
-        System.out.println("novo");
-
-        print(futuro,m,n);
-
-        grid = futuro;
-
+        
+        
+        return futuro;
     }
     
     public static void main(String[] args){
-
-        int m = 10, n = 10 ;
-
         
-
+        int grid[][] =  grade;
         print(grid,m,n);
-
         
         for (int i = 0; i < 5; i++){
             
-            
-            prox(grid, m , n);
+            grid = prox(grid, m , n);
 
+            System.out.println("novo");
+            
+            print(grid,m,n);
         }
-            
-
+        
+        
     }
-
-
-
+    
+    
+    
 }
