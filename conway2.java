@@ -1,4 +1,4 @@
-public class myconway {
+public class Conway {
     
     public static int m = 10, n = 10 ;
     public static int grade[][] =    {   { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
@@ -47,10 +47,10 @@ public class myconway {
                 if( ( grid[l][p] == 1 ) && ( alive < 2 ) )
                     futuro[l][p] = 0; 
 
-                if( ( grid[l][p] == 1 ) && ( alive > 3 ) )
+                else if( ( grid[l][p] == 1 ) && ( alive > 3 ) )
                     futuro[l][p] = 0; 
 
-                if( ( grid[l][p] == 0 ) && ( alive == 3 ) )
+                else if( ( grid[l][p] == 0 ) && ( alive == 3 ) )
                     futuro[l][p] = 1; 
                 else 
                     futuro[l][p] = grid[l][p];
@@ -58,8 +58,6 @@ public class myconway {
             }
         }
 
-        
-        
         return futuro;
     }
     
@@ -68,13 +66,14 @@ public class myconway {
         int grid[][] =  grade;
         print(grid,m,n);
         
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 8; i++){
             
             grid = prox(grid, m , n);
 
             System.out.println("novo");
             
             print(grid,m,n);
+           
         }
         
         
