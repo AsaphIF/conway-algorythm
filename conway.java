@@ -1,6 +1,47 @@
-public class myconway {
+public class Conway {
     
-    public static void prox(int grid[][], int m , int n){
+    public static int m = 10, n = 10 ;
+    public static int grade[][] =    {   { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                                    };
+
+    public static void cls()
+{
+	try
+	{	
+		new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+	}catch(Exception E)
+		{
+			System.out.println(E);
+		}
+}
+	
+
+    
+    public static void print(int grid[][], int m, int n ){
+
+        for (int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if (grid[i][j] == 0 )
+                    System.out.print("_");
+                else
+                    System.out.print("#");            
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+    }
+
+    public static int[][] prox(int grid[][], int m , int n){
         int[][] futuro = new int[m][n];
 
         for(int l = 0; l < m; l++)
@@ -13,15 +54,15 @@ public class myconway {
                         if((l+i>=0&&l+i<m)&&(p+j>=0&&p+j<n))
                          alive += grid[l+i][p+j];
                 
-                alive -=grid[l][p];
+                alive -= grid[l][p];
 
-                if((grid[l][p]==1)&&(alive < 2))
+                if( ( grid[l][p] == 1 ) && ( alive < 2 ) )
                     futuro[l][p] = 0; 
 
-                if((grid[l][p]==1)&&(alive > 3))
+                else if( ( grid[l][p] == 1 ) && ( alive > 3 ) )
                     futuro[l][p] = 0; 
 
-                if((grid[l][p]==0)&&(alive == 3))
+                else if( ( grid[l][p] == 0 ) && ( alive == 3 ) )
                     futuro[l][p] = 1; 
                 else 
                     futuro[l][p] = grid[l][p];
@@ -29,57 +70,29 @@ public class myconway {
             }
         }
 
-        System.out.println("novo");
-
-        for (int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if (futuro[i][j] == 0 )
-                    System.out.print("_");
-                else
-                    System.out.print("#");            
-            }
-            System.out.println();
-        }
-        System.out.println();
-
-
-
-
-
-
-
+        return futuro;
     }
     
-    public static void main(String[] args){
-
-        int m = 10, n = 10 ;
-
-        int[][] grid = {    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 1, 1, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 1, 1, 0, 0, 0, 0, 0 },
-                            { 0, 0, 1, 1, 0, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 },
-                            { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-                        };
-
-        for (int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if (grid[i][j] == 0 )
-                    System.out.print("_");
-                else
-                    System.out.print("#");            
-            }
-            System.out.println();
+    public static void main(String[] args) throws InterruptedException{
+        
+        int grid[][] =  grade;
+        print(grid,m,n);
+            Thread.sleep(232);
+            cls();
+        for (int i = 0; i < 30; i++){
+            
+            grid = prox(grid, m , n);
+            System.out.println("");
+            print(grid,m,n);
+            Thread.sleep(232);
+            cls();
+            
+           
         }
-        System.out.println();
-        prox(grid, m , n);
-
+        
+        
     }
-
-
-
+    
+    
+    
 }
