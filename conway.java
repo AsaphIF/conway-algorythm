@@ -31,9 +31,9 @@ public class Conway {
         for (int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if (grid[i][j] == 0 )
-                    System.out.print("_");
+                    System.out.print("  ");
                 else
-                    System.out.print("#");            
+                    System.out.print("■");            
             }
             System.out.println();
         }
