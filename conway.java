@@ -46,7 +46,7 @@ public class Conway {
         for (int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if (grid[i][j] == 0 )
-                    System.out.print("  ");
+                    System.out.print("\u001B[30m"+"_"+"\u001B[0m");
                 else
                     System.out.print("■");            
             }
