@@ -55,6 +55,11 @@ public class Conway {
         System.out.println();
 
     }
+    public static void casoCanto(int p,int j, int l, int i){
+        if((l+i>=0&&l+i<m)&&(p+j>=0&&p+j<n));
+        if((l+i==-1)) ;
+        if(l+i==m);
+    }
 //metodo que preve a proxima grad
     public static int[][] prox(int grid[][], int m , int n){
         //proxima grade
@@ -63,19 +68,21 @@ public class Conway {
         for(int l = 0; l < m; l++)
         {
             //coluna da grid
-            for(int p = 0; p < m; p++)
+            for(int p = 0; p < n; p++)
             {
                 //variavel que verifica quantas celulas estão vivas
                 int alive = 0;
                 //linha
-                for (int i = -1; i <= 1; i++)
+                for (int i = -1; i <= 1; i++){
                     //coluna
-                    for(int j = -1; j <= 1; j++)
+                    for(int j = -1; j <= 1; j++){
                         //se tiver uma celula dentro da grid
-                        if((l+i>=0&&l+i<m)&&(p+j>=0&&p+j<n))
+                        if((l+i>=0&&l+i<m)&&(p+j>=0&&p+j<n))alive += grid[l+i][p+j];
                             //conta a celula
-                         alive += grid[l+i][p+j];
-                            
+                        if(p+j==-1 && l+i < m && l+1 >=0){alive += grid[l+i][n-1];}
+                        if(p+j==n && l+i < m && l+1 >=0){alive += grid[l+i][0];} 
+                    }
+                }
                 //tira a celula lida
                 alive -= grid[l][p];
                 
